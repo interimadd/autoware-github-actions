@@ -70,7 +70,7 @@ runs:
 
     - name: Set git config
       if: ${{ inputs.build-depends-repos != '' || inputs.packages-above-repos != '' }}
-      uses: autowarefoundation/autoware-github-actions/set-git-config@v1
+      uses: autowarefoundation/autoware-github-actions/set-git-config@3419182c5e20616d2ca4c81c73ef94199eb26172 # v1.69.1
       with:
         token: ${{ inputs.token }}
 
@@ -97,7 +97,7 @@ runs:
 
     - name: Restore rosdep cache
       id: rosdep-restore
-      uses: actions/cache/restore@v6
+      uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: ~/.ros/rosdep
         key: rosdep-${{ runner.arch }}-${{ inputs.rosdistro }}
@@ -133,7 +133,7 @@ runs:
 
     - name: Save rosdep cache
       if: steps.check-cache.outputs.stale == 'true' && steps.rosdep-update.outcome == 'success'
-      uses: actions/cache/save@v6
+      uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: ~/.ros/rosdep
         key: rosdep-${{ runner.arch }}-${{ inputs.rosdistro }}
@@ -156,7 +156,7 @@ runs:
 
     - name: Checkout mixin repo locally
       if: ${{ inputs.use-local-mixin == 'true' }}
-      uses: actions/checkout@v7
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         repository: colcon/colcon-mixin-repository
         path: colcon-mixin-repository
@@ -201,7 +201,7 @@ runs:
       shell: bash
 
     - name: Cache build artifacts
-      uses: actions/cache/save@v6
+      uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: |
           ./build

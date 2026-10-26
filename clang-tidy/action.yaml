@@ -75,7 +75,7 @@ runs:
 
     - name: Set git config
       if: ${{ inputs.build-depends-repos != ''}}
-      uses: autowarefoundation/autoware-github-actions/set-git-config@v1
+      uses: autowarefoundation/autoware-github-actions/set-git-config@3419182c5e20616d2ca4c81c73ef94199eb26172 # v1.69.1
       with:
         token: ${{ inputs.token }}
 
@@ -103,7 +103,7 @@ runs:
 
     - name: Restore build files from cache
       id: restore-build-files
-      uses: actions/cache/restore@v6
+      uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: |
           ./build
@@ -138,7 +138,7 @@ runs:
 
     - name: Restore clang-tidy cache
       if: ${{ inputs.use-clang-tidy-cache == 'true' }}
-      uses: actions/cache/restore@v6
+      uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: ${{ github.workspace }}/.ctcache
         key: clang-tidy-cache-${{ runner.arch }}-${{ inputs.rosdistro }}-${{ steps.clang-tidy-version.outputs.hash }}-${{ hashFiles(format('{0}/.clang-tidy', inputs.source-directory)) }}-${{ github.sha }}
@@ -224,26 +224,26 @@ runs:
 
     - name: Save clang-tidy cache
       if: ${{ inputs.use-clang-tidy-cache == 'true' }}
-      uses: actions/cache/save@v6
+      uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: ${{ github.workspace }}/.ctcache
         key: clang-tidy-cache-${{ runner.arch }}-${{ inputs.rosdistro }}-${{ steps.clang-tidy-version.outputs.hash }}-${{ hashFiles(format('{0}/.clang-tidy', inputs.source-directory)) }}-${{ github.sha }}
 
     - name: Check if the report.log file exists
       id: check-report-log-existence
-      uses: autowarefoundation/autoware-github-actions/check-file-existence@v1
+      uses: autowarefoundation/autoware-github-actions/check-file-existence@3419182c5e20616d2ca4c81c73ef94199eb26172 # v1.69.1
       with:
         files: /tmp/clang-tidy-result/report.log
 
     - name: Check if the fixes.yaml file exists
       id: check-fixes-yaml-existence
-      uses: autowarefoundation/autoware-github-actions/check-file-existence@v1
+      uses: autowarefoundation/autoware-github-actions/check-file-existence@3419182c5e20616d2ca4c81c73ef94199eb26172 # v1.69.1
       with:
         files: /tmp/clang-tidy-result/fixes.yaml
 
     - name: Upload artifacts
       if: ${{ steps.check-report-log-existence.outputs.exists == 'true' && steps.check-fixes-yaml-existence.outputs.exists == 'true' }}
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       with:
         name: ${{ inputs.artifact-name }}
         path: /tmp/clang-tidy-result/

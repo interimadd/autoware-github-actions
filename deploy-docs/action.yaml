@@ -17,7 +17,7 @@ runs:
   using: composite
   steps:
     - name: Set up Python
-      uses: actions/setup-python@v7
+      uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
       with:
         python-version: "3.10"
 
@@ -28,7 +28,7 @@ runs:
       shell: bash
 
     - name: Set git config
-      uses: autowarefoundation/autoware-github-actions/set-git-config@v1
+      uses: autowarefoundation/autoware-github-actions/set-git-config@3419182c5e20616d2ca4c81c73ef94199eb26172 # v1.69.1
       with:
         token: ${{ inputs.token }}
 
@@ -95,7 +95,7 @@ runs:
     - name: Find PR comment
       if: ${{ steps.set-docs-version-name.outputs.pr-number != '' }}
       id: find-comment
-      uses: peter-evans/find-comment@v4
+      uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4.0.0
       with:
         issue-number: ${{ steps.set-docs-version-name.outputs.pr-number }}
         comment-author: github-actions[bot]
@@ -103,7 +103,7 @@ runs:
 
     - name: Update PR comment
       if: ${{ steps.set-docs-version-name.outputs.pr-number != '' }}
-      uses: peter-evans/create-or-update-comment@v5
+      uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
       with:
         comment-id: ${{ steps.find-comment.outputs.comment-id }}
         issue-number: ${{ steps.set-docs-version-name.outputs.pr-number }}

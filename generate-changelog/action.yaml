@@ -36,7 +36,7 @@ runs:
   using: composite
   steps:
     - name: Set up git-cliff
-      uses: kenji-miyake/setup-git-cliff@v2
+      uses: kenji-miyake/setup-git-cliff@2778609c643a39a2576c4bae2e493b855eb4aee8 # v2.0.1
       with:
         version: ${{ inputs.version }}
         token: ${{ inputs.token }}
@@ -87,7 +87,7 @@ runs:
 
     - name: Upload changelog JSON
       id: upload-changelog-json
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       with:
         name: changelog-json
         path: ./context.json

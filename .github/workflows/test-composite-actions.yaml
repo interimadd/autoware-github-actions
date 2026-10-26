@@ -17,7 +17,7 @@ jobs:
           - humble
     steps:
       - name: Check out repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Run register-autonomoustuff-repository
         uses: ./register-autonomoustuff-repository
@@ -43,7 +43,7 @@ jobs:
           - humble
     steps:
       - name: Check out repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Run clang-tidy
         uses: ./clang-tidy
@@ -64,7 +64,7 @@ jobs:
       SOURCE_DIRECTORY: ${{ matrix.layout == 'root' && '.' || 'src/fixture_repo' }}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Prepare source directory fixture
         id: fixture
@@ -121,7 +121,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Check out repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Create temporary files
         run: |
@@ -189,7 +189,7 @@ jobs:
           - humble
     steps:
       - name: Check out repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Run colcon-build
         uses: ./colcon-build
@@ -214,12 +214,12 @@ jobs:
           - ghcr.io/autowarefoundation/autoware:universe-devel
     steps:
       - name: Check out repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
       - name: Set git config
-        uses: autowarefoundation/autoware-github-actions/set-git-config@v1
+        uses: autowarefoundation/autoware-github-actions/set-git-config@3419182c5e20616d2ca4c81c73ef94199eb26172 # v1.69.1
 
       - name: Workaround for https://github.com/actions/checkout/issues/766
         run: |
